@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="Deal&#39;s Blog">
 <meta property="og:description" content="关于CAS算法问题  CAS算法配合volatile可以用来实现无锁并发  ​">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2020/09/29/关于CAS算法问题/%5CCAS.png">
+<meta property="og:image" content="http://yoursite.com/2020/09/29/关于CAS算法问题/CAS.png">
 <meta property="og:updated_time" content="2020-09-28T16:24:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于CAS算法问题">
 <meta name="twitter:description" content="关于CAS算法问题  CAS算法配合volatile可以用来实现无锁并发  ​">
-<meta name="twitter:image" content="http://yoursite.com/2020/09/29/关于CAS算法问题/%5CCAS.png">
+<meta name="twitter:image" content="http://yoursite.com/2020/09/29/关于CAS算法问题/CAS.png">
   
     <link rel="alternative" href="/atom.xml" title="Deal&#39;s Blog" type="application/atom+xml">
   
@@ -180,14 +180,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="关于CAS算法问题"><a href="#关于CAS算法问题" class="headerlink" title="关于CAS算法问题"></a>关于CAS算法问题</h1><p>  CAS算法配合volatile可以用来实现无锁并发<br>  <img src="%5CCAS.png"><br>​    <a id="more"></a><br>​    <em>volatile</em>:实现了共享变量的可见性–具体实现是让每个线程<strong>工作空间</strong>中的共享变量的副本失效而去<strong>主存</strong>中找共享变量使用，这样就不会出现一个线程修改完变量后没有及时更新到主存，此时其他线程去主存中获取到错误变量的情况。<br>   CAS具体实现：Atomic类如AtomicInteger中的incrementAndGet方法。incrementAndGet是一个让变量自增1的方法，用来替代i++（i是int型变量）。</p>
+        <h1 id="关于CAS算法问题"><a href="#关于CAS算法问题" class="headerlink" title="关于CAS算法问题"></a>关于CAS算法问题</h1><p>  CAS算法配合volatile可以用来实现无锁并发<br>  <img src="/2020/09/29/关于CAS算法问题/CAS.png" alt><br>​    <a id="more"></a><br>​    <em>volatile</em>:实现了共享变量的可见性–具体实现是让每个线程<strong>工作空间</strong>中的共享变量的副本失效而去<strong>主存</strong>中找共享变量使用，这样就不会出现一个线程修改完变量后没有及时更新到主存，此时其他线程去主存中获取到错误变量的情况。<br>   CAS具体实现：Atomic类如AtomicInteger中的incrementAndGet方法。incrementAndGet是一个让变量自增1的方法，用来替代i++（i是int型变量）。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//incrementAndGet源码实现</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// getAndAddInt源码实现</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> var5;</span><br><span class="line">        <span class="keyword">do</span> &#123;</span><br><span class="line">            var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">        &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line">        <span class="keyword">return</span> var5;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
 <p>再去点compareAndSwapInt时发现是一个native方法，底层用c/c++实现</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="keyword">boolean</span> <span class="title">compareAndSwapInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4, <span class="keyword">int</span> var5)</span></span>;</span><br></pre></td></tr></table></figure>
-
 <p>​    实际上再去查看深层的汇编码发现最终会找到 <strong>lock cmpxchg</strong>是一句汇编代码，直接与CPU对话，而前面的<strong>lock</strong>关键词保证了原子性，他的作用是告诉CPU当修改后面的值时不允许其他CPU操作。而<strong>lock</strong>的实现是CPU中的一个电信号。</p>
 <h1 id="关于ABA问题"><a href="#关于ABA问题" class="headerlink" title="关于ABA问题"></a>关于ABA问题</h1><p>  ABA即是指一个线程拿到预估值准备在CAS算法中对比主存中的值时发现值一样，其实此时这个值以及被改过了，只是又被改回来了（A先被改为B后又被改为A）虽然结果一样，但是此A非彼A。</p>
 <h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>​        每次修改值的时候加一个版本控制，如第一个A的版本是1，第二个A的版本是2.虽然最后又被改为A但是可以用版本号来甄别是不是原来的A。</p>

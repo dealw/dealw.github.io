@@ -9,20 +9,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>双向循环链表 | Deal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。原理如图：">
+  <meta name="description" content="双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。 原理如图：">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="双向循环链表">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/双向循环链表/index.html">
 <meta property="og:site_name" content="Deal&#39;s Blog">
-<meta property="og:description" content="双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。原理如图：">
+<meta property="og:description" content="双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。 原理如图：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/10/23/双向循环链表/%5Cdouble.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/23/双向循环链表/double.png">
 <meta property="og:updated_time" content="2019-10-23T07:59:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="双向循环链表">
-<meta name="twitter:description" content="双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。原理如图：">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/23/双向循环链表/%5Cdouble.png">
+<meta name="twitter:description" content="双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。 原理如图：">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/23/双向循环链表/double.png">
   
     <link rel="alternative" href="/atom.xml" title="Deal&#39;s Blog" type="application/atom+xml">
   
@@ -180,10 +180,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。<br>原理如图：</p>
-<hr>
-<p><img src="%5Cdouble.png" alt="双向循环链表"></p>
-<a id="more"></a>
+        <p>双向循环链表与单向列表不同的地方是双向链表的每一个节点都存储两个地址，pre存储的是他前一个节点的地址next存储的是他后一个节点的地址。</p>
+<h2 id="原理如图："><a href="#原理如图：" class="headerlink" title="原理如图："></a>原理如图：</h2><p><img src="/2019/10/23/双向循环链表/double.png" alt="双向循环链表"><br><a id="more"></a></p>
 <h2 id="代码解释："><a href="#代码解释：" class="headerlink" title="代码解释："></a>代码解释：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    DoubleNode pre;</span><br><span class="line">    DoubleNode next;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleNode</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data=data;</span><br><span class="line">        <span class="keyword">this</span>.pre=<span class="keyword">this</span>;</span><br><span class="line">        <span class="keyword">this</span>.next=<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">(DoubleNode node)</span></span>&#123;</span><br><span class="line"><span class="comment">//        取出当前节点的下一个节点</span></span><br><span class="line">        DoubleNode Nextnext=<span class="keyword">this</span>.next;</span><br><span class="line"><span class="comment">//        当前节点与新节点产生联系：</span></span><br><span class="line"><span class="comment">//        将当前节点的下一个节点指向新节点</span></span><br><span class="line">        <span class="keyword">this</span>.next=node;</span><br><span class="line"><span class="comment">//        将新节点的前一个节点指向当前节点</span></span><br><span class="line">        node.pre=<span class="keyword">this</span>;</span><br><span class="line"><span class="comment">//        将新节点和原当前节点的下一个节点产生联系：</span></span><br><span class="line"><span class="comment">//        将新节点的下一个节点指向原当前节点的下一个节点</span></span><br><span class="line">        node.next=Nextnext;</span><br><span class="line"><span class="comment">//        将原节点的下一个节点的前一个节点指向新节点</span></span><br><span class="line">        Nextnext.pre=node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removenext</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DoubleNode Nextnext=<span class="keyword">this</span>.next.next;</span><br><span class="line">        <span class="keyword">this</span>.next=Nextnext;</span><br><span class="line">        Nextnext.pre=<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> DoubleNode <span class="title">next</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showdata</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">this</span>.data);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 

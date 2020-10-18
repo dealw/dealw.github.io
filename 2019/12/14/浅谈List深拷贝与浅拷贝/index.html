@@ -17,12 +17,12 @@
 <meta property="og:site_name" content="Deal&#39;s Blog">
 <meta property="og:description" content="前几天在写操作系统课程设计的时候遇到了一个小问题，在代码中我定义了一个ArrayList命名为listA（List&amp;lt;T&amp;gt; listA=new ArrayList&amp;lt;&amp;gt;();）为静态成员 变量。在某个方法中我需要将listA复制出一份给新建的listB然后操作listB最后将处理后的listB作为我的结果而listA的值不变，我直接赋值（List listB=listA）后发现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/12/14/浅谈List深拷贝与浅拷贝/%5Clist.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/12/14/浅谈List深拷贝与浅拷贝/list.jpg">
 <meta property="og:updated_time" content="2019-12-14T10:03:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈List深拷贝与浅拷贝">
 <meta name="twitter:description" content="前几天在写操作系统课程设计的时候遇到了一个小问题，在代码中我定义了一个ArrayList命名为listA（List&amp;lt;T&amp;gt; listA=new ArrayList&amp;lt;&amp;gt;();）为静态成员 变量。在某个方法中我需要将listA复制出一份给新建的listB然后操作listB最后将处理后的listB作为我的结果而listA的值不变，我直接赋值（List listB=listA）后发现">
-<meta name="twitter:image" content="http://yoursite.com/2019/12/14/浅谈List深拷贝与浅拷贝/%5Clist.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/14/浅谈List深拷贝与浅拷贝/list.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Deal&#39;s Blog" type="application/atom+xml">
   
@@ -180,13 +180,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>前几天在写操作系统课程设计的时候遇到了一个小问题，在代码中我定义了一个ArrayList命名为listA（List&lt;T&gt; listA=new ArrayList&lt;&gt;();）为静态成员</code></pre>
-<p>变量。在某个方法中我需要将listA复制出一份给新建的listB然后操作listB最后将处理后的listB作为我的结果而listA的值不变，我直接赋值（List<T> listB=listA）<br>后发现经过一番处理listA中的值也发生了变化，这就影响到了我其他方法中使用原始listA的值,因为listA需要动态初始化，所以final修饰符我没有尝试。一开始我也<br>意识到了可能是地址重复引用，以为listB虽然声明了但是没有赋予堆空间，于是我先（List<T> listB=new ArrayList&lt;&gt;();）然后再（List<T> listB=listA）后发现<br>情况依然没有改变，实际上还是重复引用了listA中元素的地址.<br><img src="%5Clist.jpg"></p>
-<a id="more"></a>
-<p>所以直接赋值是浅拷贝<br>如果要实现我想要的效果就需要深拷贝<br>深拷贝即就是将listA中的元素复制一份并赋予新地址，然后再将listB中对应的元素位置指向新地址，再次操作listB时实际改变的就是新地址对应的元素而对listA无影响。<br>深拷贝实现：<br>序列化</p>
-<hr>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化只是深拷贝的一种实现方式</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">deepCopy</span><span class="params">(List&lt;T&gt; src)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">    ByteArrayOutputStream byteOut = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">    ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(byteOut);</span><br><span class="line">    out.writeObject(src);</span><br><span class="line"></span><br><span class="line">    ByteArrayInputStream byteIn = <span class="keyword">new</span> ByteArrayInputStream(byteOut.toByteArray());</span><br><span class="line">    ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(byteIn);</span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">    List&lt;T&gt; dest = (List&lt;T&gt;) in.readObject();</span><br><span class="line">    <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>List<T> listB=deepCopy(listA);修改listB对listA无影响。</p>
+        <pre><code>前几天在写操作系统课程设计的时候遇到了一个小问题，在代码中我定义了一个ArrayList命名为listA（List&lt;T&gt; listA=new ArrayList&lt;&gt;();）为静态成员
+</code></pre><p>变量。在某个方法中我需要将listA复制出一份给新建的listB然后操作listB最后将处理后的listB作为我的结果而listA的值不变，我直接赋值（List<t> listB=listA）<br>后发现经过一番处理listA中的值也发生了变化，这就影响到了我其他方法中使用原始listA的值,因为listA需要动态初始化，所以final修饰符我没有尝试。一开始我也<br>意识到了可能是地址重复引用，以为listB虽然声明了但是没有赋予堆空间，于是我先（List<t> listB=new ArrayList&lt;&gt;();）然后再（List<t> listB=listA）后发现<br>情况依然没有改变，实际上还是重复引用了listA中元素的地址.<br><img src="/2019/12/14/浅谈List深拷贝与浅拷贝/list.jpg" alt><br><a id="more"></a><br>所以直接赋值是浅拷贝<br>如果要实现我想要的效果就需要深拷贝<br>深拷贝即就是将listA中的元素复制一份并赋予新地址，然后再将listB中对应的元素位置指向新地址，再次操作listB时实际改变的就是新地址对应的元素而对listA无影响。<br>深拷贝实现：</t></t></t></p>
+<h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//序列化只是深拷贝的一种实现方式</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">deepCopy</span><span class="params">(List&lt;T&gt; src)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">    ByteArrayOutputStream byteOut = <span class="keyword">new</span> ByteArrayOutputStream();</span><br><span class="line">    ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(byteOut);</span><br><span class="line">    out.writeObject(src);</span><br><span class="line"></span><br><span class="line">    ByteArrayInputStream byteIn = <span class="keyword">new</span> ByteArrayInputStream(byteOut.toByteArray());</span><br><span class="line">    ObjectInputStream in = <span class="keyword">new</span> ObjectInputStream(byteIn);</span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    List&lt;T&gt; dest = (List&lt;T&gt;) in.readObject();</span><br><span class="line">    <span class="keyword">return</span> dest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>List<t> listB=deepCopy(listA);修改listB对listA无影响。</t></p>
 
       
 

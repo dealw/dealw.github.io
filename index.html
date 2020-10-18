@@ -158,6 +158,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-全排列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/19/全排列/">全排列</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/19/全排列/" class="archive-article-date">
+  	<time datetime="2020-10-18T16:49:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​        给定一个数n，返回1到n的全排列<br>主体思路：想办法将每种结果都列举出来，这时我想到了树。根据结果的特性，我们可以发现可以分为n类，每一类结果的第一个数都是从1到n，所以我们把树的根节点置位空，根节点的子节点设为n个（第二层），那么第三层每个子树的节点数都是n-1，如n为3，那么第二层节点就是1,2,3。第三次1的子树的节点就是2,3。2的子树的节点就是1,2，可以看出是除了自己和自己的父亲节点之外的所有节点，那么需要知道哪些节点是被访问过的（访问过就是已经加入树中）就需要有一个布尔型数组，里面存放的值就代表下标所代表的的数有没有被访问过。有一个树的概念后就该遍历了，因为每个叶子节点的路径上的所有的数的组合都代表着一种结果，所以应该用深度优先遍历，而深度优先遍历需要用到回溯法和递归。</p>
+<hr>
+<p><strong>代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 给定数组的全排列 如1,2,3的全排列就是</span></span><br><span class="line"><span class="comment"> * [1,2,3],</span></span><br><span class="line"><span class="comment"> * [1,3,2],</span></span><br><span class="line"><span class="comment"> * [2,1,3],</span></span><br><span class="line"><span class="comment"> * [2,3,1],</span></span><br><span class="line"><span class="comment"> * [3,1,2],</span></span><br><span class="line"><span class="comment"> * [3,2,1]</span></span><br><span class="line"><span class="comment"> * 主要思路是回溯法和深度优先遍历</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Permute</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> n = sc.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            arr[i] = i + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; permute = permute(arr);</span><br><span class="line">        <span class="keyword">for</span> (List&lt;Integer&gt; integers : permute) &#123;</span><br><span class="line">            <span class="keyword">for</span> (Integer integer : integers) &#123;</span><br><span class="line">                System.out.print(integer);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> List&lt;List&lt;Integer&gt;&gt; permute(<span class="keyword">int</span>[] nums) &#123;</span><br><span class="line"><span class="comment">//        res中存储每个不同的结果</span></span><br><span class="line">        List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line"><span class="comment">//        要是数组没有大小就返回空</span></span><br><span class="line">        <span class="keyword">if</span> (nums.length == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> len = nums.length;</span><br><span class="line"><span class="comment">//        用path存储每次遍历到叶子节点的结果</span></span><br><span class="line">        Deque&lt;Integer&gt; path = <span class="keyword">new</span> ArrayDeque&lt;Integer&gt;();</span><br><span class="line"><span class="comment">//        used数组存储下标对应的数是否被访问过</span></span><br><span class="line">        <span class="keyword">boolean</span>[] used = <span class="keyword">new</span> <span class="keyword">boolean</span>[len];</span><br><span class="line"><span class="comment">//        递归函数</span></span><br><span class="line">        dfs(nums, len, <span class="number">0</span>, path, used, res);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> len, <span class="keyword">int</span> depth, Deque&lt;Integer&gt; path, <span class="keyword">boolean</span>[] used, List&lt;List&lt;Integer&gt;&gt; res)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        递归边界条件就是搜索到最后一层了 也就是叶子节点就停止了 把路径上记录的数字存入res</span></span><br><span class="line">        <span class="keyword">if</span> (depth == len) &#123;</span><br><span class="line">            res.add(<span class="keyword">new</span> ArrayList&lt;&gt;(path));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        循环加递归 循环遍历数组中的每个元素 若没有被访问过则加入path中 并把这个数的状态置为true 再从这个数开始往下递归</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (used[i]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                path.addLast(nums[i]);</span><br><span class="line">                used[i] = <span class="keyword">true</span>;</span><br><span class="line">                dfs(nums, len, depth + <span class="number">1</span>, path, used, res);</span><br><span class="line"><span class="comment">//                回溯 因为当前选择到叶子节点之后就要返回上一次 但是从上一次再往其他分支遍历时就要把已经改变的状态改回去 要不然就遍历不到了</span></span><br><span class="line">                path.remove(nums[i]);</span><br><span class="line">                used[i] = <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/19/全排列/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-LinkedList源码分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -333,7 +410,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    Exchanger的主要作用是当两个线程运行到同步点时交换数据。同步点就是调用Exchanger的exchange方法的地方。先到同步点的线程会阻塞，然后等待另一个线程也到达同步点再交换数据然后继续运行。<br><img src="%5CExchanger.png"></p>
+        <p>​    Exchanger的主要作用是当两个线程运行到同步点时交换数据。同步点就是调用Exchanger的exchange方法的地方。先到同步点的线程会阻塞，然后等待另一个线程也到达同步点再交换数据然后继续运行。<br><img src="/2020/10/03/同步点交换Exchanger/Exchanger.png" alt><br></p>
         
           <a class="article-more-a" href="/2020/10/03/同步点交换Exchanger/#more">more >></a>
         
@@ -409,7 +486,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  信号量是线程访问临近资源的一个标识。当线程想访问某个临界资源也就是要执行临界区代码时，他先要去申请一个信号量即一个许可，拿到这个许可之后才可以去执行临界区。而Semaphore主要的作用就是限制同时访问临界区的线程数。若Semaphore设置为5则意味着五个线程同时到达后可以申请到信号量，第六个线程到来时就申请不到了，除非前五个线程中一个或多个执行完临界区后释放信号量，接下来的线程才有机会申请到。所以当一个线程执行完临界区后一定要释放信号量。<br><img src="%5CSemaphore.png"></p>
+        <p>  信号量是线程访问临近资源的一个标识。当线程想访问某个临界资源也就是要执行临界区代码时，他先要去申请一个信号量即一个许可，拿到这个许可之后才可以去执行临界区。而Semaphore主要的作用就是限制同时访问临界区的线程数。若Semaphore设置为5则意味着五个线程同时到达后可以申请到信号量，第六个线程到来时就申请不到了，除非前五个线程中一个或多个执行完临界区后释放信号量，接下来的线程才有机会申请到。所以当一个线程执行完临界区后一定要释放信号量。<br><img src="/2020/10/03/信号量机制Semaphore/Semaphore.png" alt><br></p>
         
           <a class="article-more-a" href="/2020/10/03/信号量机制Semaphore/#more">more >></a>
         
@@ -485,7 +562,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    栅栏是指阻塞当前线程，等待其他线程。当线程运行到CyclicBarrier的await方法时会阻塞当前线程，等待其他线程也运行到await方法直到栅栏计数器为0的时候，再一起被放行。而每执行一次await方法，栅栏数就会减一。相当于每执行一次CountDownLatch的countDown方法一样，计数器都会减一。<br><img src="%5CCyclicBarrier.jpg"></p>
+        <p>​    栅栏是指阻塞当前线程，等待其他线程。当线程运行到CyclicBarrier的await方法时会阻塞当前线程，等待其他线程也运行到await方法直到栅栏计数器为0的时候，再一起被放行。而每执行一次await方法，栅栏数就会减一。相当于每执行一次CountDownLatch的countDown方法一样，计数器都会减一。<br><img src="/2020/10/03/栅栏CyclicBarrier/CyclicBarrier.jpg" alt><br></p>
         
           <a class="article-more-a" href="/2020/10/03/栅栏CyclicBarrier/#more">more >></a>
         
@@ -561,7 +638,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​        CountDownLatch称之为闭锁，他的主要作用是让主线程等待*<strong>一组事件***完成之后再继续运行。<br>*</strong>一组事件***：指的是CountDownLatch中的CountDown()方法。也就是说，等待指定次数的CountDown方法执行完成之后，主线程才可以被唤醒继续执行。<br><img src="%5CCountDownLatch.jpg" alt="CountDownLatch"></p>
+        <p>​        CountDownLatch称之为闭锁，他的主要作用是让主线程等待<strong><em>一组事件</em></strong>完成之后再继续运行。<br><strong><em>一组事件</em></strong>：指的是CountDownLatch中的CountDown()方法。也就是说，等待指定次数的CountDown方法执行完成之后，主线程才可以被唤醒继续执行。<br><img src="/2020/10/03/闭锁CountDownLatch/CountDownLatch.jpg" alt="CountDownLatch"><br></p>
         
           <a class="article-more-a" href="/2020/10/03/闭锁CountDownLatch/#more">more >></a>
         
@@ -637,7 +714,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="关于CAS算法问题"><a href="#关于CAS算法问题" class="headerlink" title="关于CAS算法问题"></a>关于CAS算法问题</h1><p>  CAS算法配合volatile可以用来实现无锁并发<br>  <img src="%5CCAS.png"><br>​
+        <h1 id="关于CAS算法问题"><a href="#关于CAS算法问题" class="headerlink" title="关于CAS算法问题"></a>关于CAS算法问题</h1><p>  CAS算法配合volatile可以用来实现无锁并发<br>  <img src="/2020/09/29/关于CAS算法问题/CAS.png" alt><br>​</p>
         
           <a class="article-more-a" href="/2020/09/29/关于CAS算法问题/#more">more >></a>
         
@@ -713,8 +790,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。<br>[[“a”,”b”,”c”,”e”],<br>[“s”,”f”,”c”,”s”],<br>[“a”,”d”,”e”,”e”]]<br>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。<br>示例 1：<br>输入：board = [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word = “ABCCED”<br>输出：true<br>示例 2：<br>输入：board = [[“a”,”b”],[“c”,”d”]], word = “abcd”<br>输出：false</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] words=word.toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;board.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;board[i].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dfs(i,j,<span class="number">0</span>,board,words)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k,<span class="keyword">char</span>[][] board,<span class="keyword">char</span>[] words)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;board.length-<span class="number">1</span>||i&lt;<span class="number">0</span>||j&gt;board[i].length-<span class="number">1</span>||j&lt;<span class="number">0</span>||board[i][j]!=words[k])&#123;<span class="keyword">return</span> <span class="keyword">false</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span>(k==words.length-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> temp=board[i][j];</span><br><span class="line">       board[i][j] = <span class="string">&#x27;/&#x27;</span>;</span><br><span class="line">        <span class="keyword">boolean</span> result=dfs(i+<span class="number">1</span>,j,k+<span class="number">1</span>,board,words)||dfs(i-<span class="number">1</span>,j,k+<span class="number">1</span>,board,words)||</span><br><span class="line">                dfs(i,j+<span class="number">1</span>,k+<span class="number">1</span>,board,words)||dfs(i,j-<span class="number">1</span>,k+<span class="number">1</span>,board,words);</span><br><span class="line">        board[i][j]=temp;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。<br>[[“a”,”b”,”c”,”e”],<br>[“s”,”f”,”c”,”s”],<br>[“a”,”d”,”e”,”e”]]<br>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。<br>示例 1：<br>输入：board = [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word = “ABCCED”<br>输出：true<br>示例 2：<br>输入：board = [[“a”,”b”],[“c”,”d”]], word = “abcd”<br>输出：false<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] words=word.toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;board.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;board[i].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dfs(i,j,<span class="number">0</span>,board,words)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k,<span class="keyword">char</span>[][] board,<span class="keyword">char</span>[] words)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;board.length-<span class="number">1</span>||i&lt;<span class="number">0</span>||j&gt;board[i].length-<span class="number">1</span>||j&lt;<span class="number">0</span>||board[i][j]!=words[k])&#123;<span class="keyword">return</span> <span class="keyword">false</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span>(k==words.length-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> temp=board[i][j];</span><br><span class="line">       board[i][j] = <span class="string">'/'</span>;</span><br><span class="line">        <span class="keyword">boolean</span> result=dfs(i+<span class="number">1</span>,j,k+<span class="number">1</span>,board,words)||dfs(i-<span class="number">1</span>,j,k+<span class="number">1</span>,board,words)||</span><br><span class="line">                dfs(i,j+<span class="number">1</span>,k+<span class="number">1</span>,board,words)||dfs(i,j-<span class="number">1</span>,k+<span class="number">1</span>,board,words);</span><br><span class="line">        board[i][j]=temp;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -787,8 +864,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br>示例:<br>现有矩阵 matrix 如下：<br>[<br>  [1,   4,  7, 11, 15],<br>  [2,   5,  8, 12, 19],<br>  [3,   6,  9, 16, 22],<br>  [10, 13, 14, 17, 24],<br>  [18, 21, 23, 26, 30]<br>]<br>给定 target = 5，返回 true。<br>给定 target = 20，返回 false。<br>解法：先选定一个右上角的值与targe值做比较，因为数组有序，所以如果大于target就往小的地方走即列数减一，若小于target就往大的地方走即行数加一。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">findNumberIn2DArray</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix.length==<span class="number">0</span>||matrix==<span class="keyword">null</span>||matrix[<span class="number">0</span>]==<span class="keyword">null</span>||matrix[<span class="number">0</span>].length==<span class="number">0</span>||(target+<span class="string">&quot; &quot;</span>).length()==<span class="number">0</span>)&#123; <span class="keyword">return</span> <span class="keyword">false</span>;&#125;</span><br><span class="line">        <span class="keyword">int</span> m=matrix.length; <span class="keyword">int</span> n=matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j=n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;m&amp;&amp;j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j]&gt;target)&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j]&lt;target)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br>示例:<br>现有矩阵 matrix 如下：<br>[<br>  [1,   4,  7, 11, 15],<br>  [2,   5,  8, 12, 19],<br>  [3,   6,  9, 16, 22],<br>  [10, 13, 14, 17, 24],<br>  [18, 21, 23, 26, 30]<br>]<br>给定 target = 5，返回 true。<br>给定 target = 20，返回 false。<br>解法：先选定一个右上角的值与targe值做比较，因为数组有序，所以如果大于target就往小的地方走即列数减一，若小于target就往大的地方走即行数加一。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">findNumberIn2DArray</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix.length==<span class="number">0</span>||matrix==<span class="keyword">null</span>||matrix[<span class="number">0</span>]==<span class="keyword">null</span>||matrix[<span class="number">0</span>].length==<span class="number">0</span>||(target+<span class="string">" "</span>).length()==<span class="number">0</span>)&#123; <span class="keyword">return</span> <span class="keyword">false</span>;&#125;</span><br><span class="line">        <span class="keyword">int</span> m=matrix.length; <span class="keyword">int</span> n=matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j=n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;m&amp;&amp;j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j]&gt;target)&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j]&lt;target)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+
       
 
       
@@ -812,81 +889,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/21/二维数组中的查找/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-无重复字符的最长子串" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/20/无重复字符的最长子串/">无重复字符的最长子串</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/20/无重复字符的最长子串/" class="archive-article-date">
-  	<time datetime="2020-09-20T15:12:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。<br>示例 1:<br>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。<br>示例 2:<br>输入: “bbbbb”<br>输出: 1<br>解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。<br>示例 3:<br>输入: “pwwkew”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。<br>     请注意，你的答案必须是 子串 的长度，”pwke” 是一个子序列，不是子串。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="comment">// 哈希集合，记录每个字符是否出现过</span></span><br><span class="line">       Set&lt;Character&gt; occ = <span class="keyword">new</span> HashSet&lt;Character&gt;();</span><br><span class="line">       <span class="keyword">int</span> n = s.length();</span><br><span class="line">       <span class="comment">// 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动</span></span><br><span class="line">       <span class="keyword">int</span> rk = -<span class="number">1</span>, ans = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">           <span class="keyword">if</span> (i != <span class="number">0</span>) &#123;</span><br><span class="line">               <span class="comment">// 左指针向右移动一格，移除一个字符</span></span><br><span class="line">               occ.remove(s.charAt(i - <span class="number">1</span>));</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">while</span> (rk + <span class="number">1</span> &lt; n &amp;&amp; !occ.contains(s.charAt(rk + <span class="number">1</span>))) &#123;</span><br><span class="line">               <span class="comment">// 不断地移动右指针</span></span><br><span class="line">               occ.add(s.charAt(rk + <span class="number">1</span>));</span><br><span class="line">               ++rk;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// 第 i 到 rk 个字符是一个极长的无重复字符子串</span></span><br><span class="line">           ans = Math.max(ans, rk - i + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> ans;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/20/无重复字符的最长子串/">展开全文 >></a>
         </p>
       
 

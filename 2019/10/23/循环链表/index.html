@@ -9,20 +9,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>循环链表 | Deal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。原理如图：">
+  <meta name="description" content="循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。 原理如图：">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="循环链表">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/循环链表/index.html">
 <meta property="og:site_name" content="Deal&#39;s Blog">
-<meta property="og:description" content="循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。原理如图：">
+<meta property="og:description" content="循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。 原理如图：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/10/23/循环链表/%5Cloopnode.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/23/循环链表/loopnode.png">
 <meta property="og:updated_time" content="2019-10-23T07:06:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="循环链表">
-<meta name="twitter:description" content="循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。原理如图：">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/23/循环链表/%5Cloopnode.png">
+<meta name="twitter:description" content="循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。 原理如图：">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/23/循环链表/loopnode.png">
   
     <link rel="alternative" href="/atom.xml" title="Deal&#39;s Blog" type="application/atom+xml">
   
@@ -180,10 +180,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。<br>原理如图：</p>
-<hr>
-<p><img src="%5Cloopnode.png" alt="循环链表"></p>
-<a id="more"></a>
+        <p>循环链表与单链表类似，不同的是单链表最后一个节点存储的地址是null循环链表最后一个节点存储的地址是第一个节点，形成了一个环。</p>
+<h2 id="原理如图："><a href="#原理如图：" class="headerlink" title="原理如图："></a>原理如图：</h2><p><img src="/2019/10/23/循环链表/loopnode.png" alt="循环链表"><br><a id="more"></a></p>
 <h2 id="代码解释："><a href="#代码解释：" class="headerlink" title="代码解释："></a>代码解释：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoopNode</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    LoopNode next;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LoopNode</span><span class="params">(<span class="keyword">int</span> data)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data=data;</span><br><span class="line"><span class="comment">//每个节点生成后下一个节点都指向自己这样能保证链尾的节点指向链首</span></span><br><span class="line">        <span class="keyword">this</span>.next=<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//    删除下一个节点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removenext</span><span class="params">()</span></span>&#123;</span><br><span class="line">        LoopNode target=<span class="keyword">this</span>.next.next;</span><br><span class="line">        <span class="keyword">this</span>.next=target;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//    插入节点（到某节点的下一个节点）</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LoopNode <span class="title">insert</span><span class="params">(LoopNode node)</span></span>&#123;</span><br><span class="line">        LoopNode befornext = <span class="keyword">this</span>.next;</span><br><span class="line">        <span class="keyword">this</span>.next = node;</span><br><span class="line">        node.next=befornext;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//    获取节点数据</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">showdata</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.data;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//    获取当前节点的下一个节点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> LoopNode <span class="title">next</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.next;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
       
 
