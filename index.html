@@ -158,6 +158,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-tomcat集群时共享Session解决方案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/12/tomcat集群时共享Session解决方案/">Tomcat集群时共享Session解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/12/tomcat集群时共享Session解决方案/" class="archive-article-date">
+  	<time datetime="2020-11-11T17:26:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    一个Tomcat服务器所能承受的并发量是200，当有高并发需求时我想到用Tomcat做集群，然后用Nginx做负载均衡。但是我的Web应用中有登录功能，而判断用户登录的标志是Session中是否有用户的信息，所以集群就造成了Session不共享导致用户在访问网页时出现偶发性的重复登录，给用户带来不好的体验。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="1-用Cookie存储Session的信息"><a href="#1-用Cookie存储Session的信息" class="headerlink" title="1.用Cookie存储Session的信息"></a><del>1.用Cookie存储Session的信息</del></h4><p>​    每次用户登录之后把用户信息存入Cookie并回发给用户，将Cookie的作用范围设置为一次会话，用户每次访问都带着Cookie去。<br>​    优点：减轻服务器压力。 缺点：毫无安全性，数据裸奔，失去使用Session的意义。</p>
+<h4 id="2-Nginx使用ip-hash策略"><a href="#2-Nginx使用ip-hash策略" class="headerlink" title="2.Nginx使用ip_hash策略"></a><del>2.Nginx使用ip_hash策略</del></h4><p>​    Nginx负载均衡策略使用ip_hash将用户的ip和某个服务器绑定，就不存在用户在页面跳转时访问到其他服务器导致的Session找不到的问题。<br>​    优点：解决方案实施起来简单，从根本上解决问题。缺点：实际情景中多数情况下并不是一个用户一个ip而是多个用户通过代理访问到网站，那么多个用户的外网ip就是一个了，这样一来一个服务器就承载了巨大的压力，增加了宕机的风险。</p>
+<h4 id="3-使用Redis存储Session的信息"><a href="#3-使用Redis存储Session的信息" class="headerlink" title="3.使用Redis存储Session的信息"></a>3.使用Redis存储Session的信息</h4><p>​    用户每次展开一个新的会话时，服务器生成一个JSessionId，并将这个JSessionId作为Redis缓存的Key，把用户数据作为Value存入缓存中。当用户多次访问时，服务器只需要去缓存中寻找相应的记录即可。</p>
+<p><img src="/2020/11/12/tomcat集群时共享Session解决方案/session.png" alt></p>
+<p> 优点：安全性得以保障，问题也得到解决。缺点：增加服务器负担。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/12/tomcat集群时共享Session解决方案/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-全排列" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -814,80 +893,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/21/矩阵中的路径/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-二维数组中的查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/21/二维数组中的查找/">二维数组中的查找</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/21/二维数组中的查找/" class="archive-article-date">
-  	<time datetime="2020-09-21T03:34:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br>示例:<br>现有矩阵 matrix 如下：<br>[<br>  [1,   4,  7, 11, 15],<br>  [2,   5,  8, 12, 19],<br>  [3,   6,  9, 16, 22],<br>  [10, 13, 14, 17, 24],<br>  [18, 21, 23, 26, 30]<br>]<br>给定 target = 5，返回 true。<br>给定 target = 20，返回 false。<br>解法：先选定一个右上角的值与targe值做比较，因为数组有序，所以如果大于target就往小的地方走即列数减一，若小于target就往大的地方走即行数加一。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">findNumberIn2DArray</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(matrix.length==<span class="number">0</span>||matrix==<span class="keyword">null</span>||matrix[<span class="number">0</span>]==<span class="keyword">null</span>||matrix[<span class="number">0</span>].length==<span class="number">0</span>||(target+<span class="string">" "</span>).length()==<span class="number">0</span>)&#123; <span class="keyword">return</span> <span class="keyword">false</span>;&#125;</span><br><span class="line">        <span class="keyword">int</span> m=matrix.length; <span class="keyword">int</span> n=matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> j=n-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;m&amp;&amp;j&gt;=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j]&gt;target)&#123;</span><br><span class="line">                j--;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j]&lt;target)&#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/21/二维数组中的查找/">展开全文 >></a>
         </p>
       
 
