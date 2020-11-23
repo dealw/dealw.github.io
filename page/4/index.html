@@ -158,6 +158,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="new-冒泡排序" class="article article-type-new  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/26/冒泡排序/">冒泡排序</a>
+    </h1>
+  
+
+        
+        <a href="/2019/10/26/冒泡排序/" class="archive-article-date">
+  	<time datetime="2019-10-26T07:37:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="冒泡排序类似气泡从水中冒起来，越靠近水面的气泡越大，即数组按照一定的顺序排列。"><a href="#冒泡排序类似气泡从水中冒起来，越靠近水面的气泡越大，即数组按照一定的顺序排列。" class="headerlink" title="冒泡排序类似气泡从水中冒起来，越靠近水面的气泡越大，即数组按照一定的顺序排列。"></a>冒泡排序类似气泡从水中冒起来，越靠近水面的气泡越大，即数组按照一定的顺序排列。</h2><p>数组中从第一个数开始与后一个两两比较大小，满足条件时进行交换，每一轮比较总能把一个最大的或最小的数移动到靠后的位置，比较数组长度减一轮就能把所有数比较完，因为最后一个数不用和自己比较<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">maopao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr=<span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">6</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">1</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        maopao1(arr);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">maopao1</span><span class="params">(<span class="keyword">int</span> [] arr)</span></span>&#123;</span><br><span class="line"><span class="comment">//        外层循环控制循环多少轮</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line"><span class="comment">//                内层控制每轮循环多少次</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arr.length-<span class="number">1</span>-i;j++)&#123;</span><br><span class="line"><span class="comment">//                    从小到大排列，若前者大于后者则交换位置</span></span><br><span class="line">                    <span class="keyword">if</span>(arr[j]&gt;arr[j+<span class="number">1</span>])&#123;</span><br><span class="line">                        <span class="keyword">int</span> temp=arr[j];</span><br><span class="line">                        arr[j]=arr[j+<span class="number">1</span>];</span><br><span class="line">                        arr[j+<span class="number">1</span>]=temp;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/26/冒泡排序/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-汉诺塔问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -815,82 +889,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/21/SpringIoc和Tomcat容器不同导致空指针/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Painter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/03/Painter/">Painter</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/03/Painter/" class="archive-article-date">
-  	<time datetime="2018-07-03T10:24:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="主类↓↓↓"><a href="#主类↓↓↓" class="headerlink" title="主类↓↓↓"></a>主类↓↓↓</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.awt.Graphics;</span><br><span class="line"><span class="keyword">import</span> java.awt.Image;</span><br><span class="line"><span class="keyword">import</span> java.awt.Toolkit;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.ActionListener;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseAdapter;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"><span class="keyword">import</span> javax.swing.ImageIcon;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JButton;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JMenu;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JMenuBar;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JMenuItem;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JPanel;</span><br><span class="line"><span class="keyword">import</span> javax.swing.border.EmptyBorder;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Shape</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Graphics g)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Painter</span> <span class="keyword">extends</span> <span class="title">JFrame</span> <span class="keyword">implements</span> <span class="title">ActionListener</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> JPanel contentPane;</span><br><span class="line">	<span class="keyword">private</span> String shape;</span><br><span class="line">	<span class="keyword">private</span> String color;</span><br><span class="line">	<span class="keyword">private</span> Shape s;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paint</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (s != <span class="keyword">null</span>) &#123;</span><br><span class="line">			s.draw(g);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Painter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		setTitle(<span class="string">"绘画板"</span>);</span><br><span class="line">		Image img = Toolkit.getDefaultToolkit ().getImage (<span class="string">"color/icon.jpg"</span>);	</span><br><span class="line">		setIconImage(img);</span><br><span class="line">		setBounds(<span class="number">200</span>, <span class="number">200</span>,<span class="number">900</span>, <span class="number">650</span>);</span><br><span class="line">		contentPane = <span class="keyword">new</span> JPanel();</span><br><span class="line">		setContentPane(contentPane);<span class="comment">// 设置 contentPane 属性。透明</span></span><br><span class="line">		contentPane.setLayout(<span class="keyword">null</span>);<span class="comment">//清除布局管理 自定义位置</span></span><br><span class="line">		JMenuBar menuBar = <span class="keyword">new</span> JMenuBar();</span><br><span class="line">		setJMenuBar(menuBar);</span><br><span class="line">		JMenu menu = <span class="keyword">new</span> JMenu(<span class="string">"直线"</span>);</span><br><span class="line">		menuBar.add(menu);</span><br><span class="line">		JMenu menu_1 = <span class="keyword">new</span> JMenu(<span class="string">"椭圆"</span>);</span><br><span class="line">		menuBar.add(menu_1);</span><br><span class="line">		JMenuItem menuItem = <span class="keyword">new</span> JMenuItem(<span class="string">"空心椭圆"</span>);</span><br><span class="line">		menu_1.add(menuItem);</span><br><span class="line">		JMenuItem menuItem_1 = <span class="keyword">new</span> JMenuItem(<span class="string">"实心椭圆"</span>);</span><br><span class="line">		menu_1.add(menuItem_1);</span><br><span class="line">		JMenu menu_2 = <span class="keyword">new</span> JMenu(<span class="string">"矩形"</span>);</span><br><span class="line">		menuBar.add(menu_2);</span><br><span class="line">		JMenuItem menuItem_3 = <span class="keyword">new</span> JMenuItem(<span class="string">"空心矩形"</span>);</span><br><span class="line">		menu_2.add(menuItem_3);</span><br><span class="line">		JMenuItem menuItem_4 = <span class="keyword">new</span> JMenuItem(<span class="string">"实心矩形"</span>);</span><br><span class="line">		menu_2.add(menuItem_4);</span><br><span class="line">		JMenu menu_3 = <span class="keyword">new</span> JMenu(<span class="string">"多边形"</span>);</span><br><span class="line">		menuBar.add(menu_3);</span><br><span class="line">		JButton button = <span class="keyword">new</span> JButton(<span class="string">"直线"</span>);</span><br><span class="line">		button.setBounds(<span class="number">10</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button);</span><br><span class="line">		JButton button_1 = <span class="keyword">new</span> JButton(<span class="string">"空心椭圆"</span>);</span><br><span class="line">		button_1.setBounds(<span class="number">106</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_1);</span><br><span class="line">		button_1.addActionListener(<span class="keyword">this</span>);</span><br><span class="line">		JButton button_2 = <span class="keyword">new</span> JButton(<span class="string">"实心椭圆"</span>);</span><br><span class="line">		button_2.setBounds(<span class="number">201</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_2);</span><br><span class="line">		button_2.addActionListener(<span class="keyword">this</span>);</span><br><span class="line">		JButton button_3 = <span class="keyword">new</span> JButton(<span class="string">"空心矩形"</span>);</span><br><span class="line">		button_3.setBounds(<span class="number">295</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_3);</span><br><span class="line">		button_3.addActionListener(<span class="keyword">this</span>);</span><br><span class="line">		JButton button_4 = <span class="keyword">new</span> JButton(<span class="string">"实心矩形"</span>);</span><br><span class="line">		button_4.setBounds(<span class="number">388</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_4);</span><br><span class="line">		button_4.addActionListener(<span class="keyword">this</span>);</span><br><span class="line">		JButton button_5 = <span class="keyword">new</span> JButton(<span class="string">"多边形"</span>);</span><br><span class="line">		button_5.setBounds(<span class="number">481</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_5);</span><br><span class="line">		button_5.addActionListener(<span class="keyword">this</span>);</span><br><span class="line">		JButton button_6 = <span class="keyword">new</span> JButton((<span class="string">"红色"</span>),<span class="keyword">new</span> ImageIcon(<span class="string">"color/red.jpg"</span>));</span><br><span class="line">		button_6.setBounds(<span class="number">580</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_6);</span><br><span class="line">		JButton button_7 = <span class="keyword">new</span> JButton((<span class="string">"蓝色"</span>),<span class="keyword">new</span> ImageIcon(<span class="string">"color/blue.jpg"</span>));</span><br><span class="line">		button_7.setBounds(<span class="number">679</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_7);</span><br><span class="line">		JButton button_8 = <span class="keyword">new</span> JButton((<span class="string">"橡皮"</span>),<span class="keyword">new</span> ImageIcon(<span class="string">"color/eraser.jpg"</span>));</span><br><span class="line">		button_8.setBounds(<span class="number">776</span>, <span class="number">530</span>, <span class="number">90</span>, <span class="number">55</span>);</span><br><span class="line">		contentPane.add(button_8);</span><br><span class="line">		ActionListener listener = <span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">				color=<span class="string">"默认黑色"</span>;</span><br><span class="line">				shape = e.getActionCommand();</span><br><span class="line">				getloc();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		ActionListener listener_1 = <span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">				color = e.getActionCommand();</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">		menu.addActionListener(listener);</span><br><span class="line">		menu_3.addActionListener(listener);</span><br><span class="line">		menuItem.addActionListener(listener);</span><br><span class="line">		menuItem_1.addActionListener(listener);</span><br><span class="line">		menuItem_3.addActionListener(listener);</span><br><span class="line">		menuItem_4.addActionListener(listener);</span><br><span class="line">		button.addActionListener(listener);</span><br><span class="line">		button_1.addActionListener(listener);</span><br><span class="line">		button_2.addActionListener(listener);</span><br><span class="line">		button_3.addActionListener(listener);</span><br><span class="line">		button_4.addActionListener(listener);</span><br><span class="line">		button_5.addActionListener(listener);</span><br><span class="line">		button_8.addActionListener(listener);</span><br><span class="line">		button_6.addActionListener(listener_1);</span><br><span class="line">		button_7.addActionListener(listener_1);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">Col</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> col;</span><br><span class="line">		<span class="keyword">if</span>(color==<span class="string">"红色"</span>) &#123;</span><br><span class="line">		col= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> (color==<span class="string">"蓝色"</span>)&#123;</span><br><span class="line">			col=<span class="number">2</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			col=<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">return</span> col;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/07/03/Painter/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/03/Painter/">展开全文 >></a>
         </p>
       
 

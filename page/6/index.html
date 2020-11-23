@@ -158,6 +158,79 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-List原始及自定义排序方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/27/List原始及自定义排序方法/">List原始及自定义排序方法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/02/27/List原始及自定义排序方法/" class="archive-article-date">
+  	<time datetime="2018-02-27T13:15:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(obj);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;String&gt; lis = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		lis.add(<span class="string">"aa"</span>);</span><br><span class="line">		lis.add(<span class="string">"b"</span>);</span><br><span class="line">		lis.add(<span class="string">"bbb"</span>);</span><br><span class="line">		lis.add(<span class="string">"zzz"</span>);</span><br><span class="line">		lis.add(<span class="string">"aaa"</span>);</span><br><span class="line">		lis.add(<span class="string">"bb"</span>);</span><br><span class="line">		lis.add(<span class="string">"a"</span>);</span><br><span class="line">		sop(lis);</span><br><span class="line">		Collections.sort(lis<span class="comment">/* ,new Comlen() */</span>);<span class="comment">//将定义的方法加入其中</span></span><br><span class="line">		sop(lis);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comlen</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;  <span class="comment">//自定义长度比较方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (s1.length() &gt; s2.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (s1.length() &lt; s2.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s1.compareTo(s2);   <span class="comment">//长度相同时按照字符比较</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/02/27/List原始及自定义排序方法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-HashMap的keySet和entrySet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -800,90 +873,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/02/14/字符串类型部分api实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-String类型常用API" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/14/String类型常用API/">String类型常用API</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/14/String类型常用API/" class="archive-article-date">
-  	<time datetime="2018-02-14T11:59:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>String类适用于描述字符串事物。<br>那么它就提供了多个方法对字符串进行操作。</p>
-<p>常见的操作有哪些？<br>“abcd”</p>
-<blockquote>
-<p>1、获取。<br>    1.1 字符串中的包含的字符数，也就是字符串的长度。<br>        int length():获取长度。<br>    1.2 根据位置获取位置上某个字符。<br>        char charAt(int index):<br>    1.3 根据字符获取该字符在字符串中位置。<br>        int indexOf(int ch):返回的是ch在字符串中第一次出现的位置。<br>        int indexOf(int ch, int fromIndex) :从fromIndex指定位置开始，获取ch在字符串中出现的位置。<br>        int indexOf(String str):返回的是str在字符串中第一次出现的位置。<br>        int indexOf(String str, int fromIndex) :从fromIndex指定位置开始，获取str在字符串中出现的位置。<br>        int lastIndexOf(int ch) ：</p>
-</blockquote>
-<hr>
-<blockquote>
-<p>2、判断。<br>    2.1 字符串中是否包含某一个子串。<br>        boolean contains(str):<br>        特殊之处：indexOf(str):可以索引str第一次出现位置，如果返回-1.表示该str不在字符串中存在。<br>                所以，也可以用于对指定判断是否包含。<br>                if(str.indexOf(“aa”)!=-1)<br>                而且该方法即可以判断，有可以获取出现的位置。<br>    2.2 字符中是否有内容。<br>        boolean isEmpty(): 原理就是判断长度是否为0.<br>    2.3 字符串是否是以指定内容开头。<br>        boolean startsWith(str);<br>    2.4 字符串是否是以指定内容结尾。<br>        boolean endsWith(str);<br>    2.5 判断字符串内容是否相同。复写了Object类中的equals方法。<br>        boolean equals(str);<br>    2.6 判断内容是否相同，并忽略大小写。<br>        boolean equalsIgnoreCase();</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/02/14/String类型常用API/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/14/String类型常用API/">展开全文 >></a>
         </p>
       
 

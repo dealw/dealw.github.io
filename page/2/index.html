@@ -158,6 +158,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-矩阵中的路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/21/矩阵中的路径/">矩阵中的路径</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/21/矩阵中的路径/" class="archive-article-date">
+  	<time datetime="2020-09-21T07:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。<br>[[“a”,”b”,”c”,”e”],<br>[“s”,”f”,”c”,”s”],<br>[“a”,”d”,”e”,”e”]]<br>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。<br>示例 1：<br>输入：board = [[“A”,”B”,”C”,”E”],[“S”,”F”,”C”,”S”],[“A”,”D”,”E”,”E”]], word = “ABCCED”<br>输出：true<br>示例 2：<br>输入：board = [[“a”,”b”],[“c”,”d”]], word = “abcd”<br>输出：false<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">exist</span><span class="params">(<span class="keyword">char</span>[][] board, String word)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span>[] words=word.toCharArray();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;board.length;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;board[i].length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(dfs(i,j,<span class="number">0</span>,board,words)) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125; <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k,<span class="keyword">char</span>[][] board,<span class="keyword">char</span>[] words)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;board.length-<span class="number">1</span>||i&lt;<span class="number">0</span>||j&gt;board[i].length-<span class="number">1</span>||j&lt;<span class="number">0</span>||board[i][j]!=words[k])&#123;<span class="keyword">return</span> <span class="keyword">false</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span>(k==words.length-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> temp=board[i][j];</span><br><span class="line">       board[i][j] = <span class="string">'/'</span>;</span><br><span class="line">        <span class="keyword">boolean</span> result=dfs(i+<span class="number">1</span>,j,k+<span class="number">1</span>,board,words)||dfs(i-<span class="number">1</span>,j,k+<span class="number">1</span>,board,words)||</span><br><span class="line">                dfs(i,j+<span class="number">1</span>,k+<span class="number">1</span>,board,words)||dfs(i,j-<span class="number">1</span>,k+<span class="number">1</span>,board,words);</span><br><span class="line">        board[i][j]=temp;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/21/矩阵中的路径/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-二维数组中的查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -803,80 +877,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/11/14/赫夫曼编码及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-赫夫曼树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/12/赫夫曼树/">赫夫曼树</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/12/赫夫曼树/" class="archive-article-date">
-  	<time datetime="2019-11-12T15:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>赫夫曼树即最优二叉树，每个节点都有权值，每个节点的路径条数乘以权值数之和（WPL）最小的就是最优二叉树，也就是赫夫曼树<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestHuffmanTree</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr=&#123;<span class="number">3</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">14</span>,<span class="number">7</span>,<span class="number">9</span>&#125;;</span><br><span class="line">        HuffmanTree tree = creatHuffman(arr);</span><br><span class="line">        HuffmaTree bt=<span class="keyword">new</span> HuffmaTree();</span><br><span class="line">        bt.setRoot(tree);</span><br><span class="line"><span class="comment">//        中序遍历</span></span><br><span class="line">        bt.midshow();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> HuffmanTree <span class="title">creatHuffman</span><span class="params">(<span class="keyword">int</span> [] arr)</span></span>&#123;</span><br><span class="line"><span class="comment">//        为了排序用list</span></span><br><span class="line">        List&lt;HuffmanTree&gt; list=<span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"><span class="comment">//        创造节点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> value:arr)&#123;</span><br><span class="line">            list.add(<span class="keyword">new</span> HuffmanTree(value));</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        当list内还有大于值时即没到根节点时持续循环找最小的两位数</span></span><br><span class="line">       <span class="keyword">while</span>(list.size()&gt;<span class="number">1</span>)&#123;</span><br><span class="line"><span class="comment">//           先由大到小排序</span></span><br><span class="line">           Collections.sort(list);</span><br><span class="line"><span class="comment">//           在找出最小的两位数分别作为左右节点，再计算出和权值</span></span><br><span class="line">           HuffmanTree left=list.get(list.size()-<span class="number">1</span>);</span><br><span class="line">           HuffmanTree right=list.get(list.size()-<span class="number">2</span>);</span><br><span class="line"><span class="comment">//           创造新节点权值为左右两节点之和，然后加入list即去掉两个加入一个这样循环才能结束</span></span><br><span class="line">           HuffmanTree parent=<span class="keyword">new</span> HuffmanTree(left.value+right.value);</span><br><span class="line">           list.add(parent);</span><br><span class="line"><span class="comment">//          将刚才那两个最小的节点变成parent节点的左右节点</span></span><br><span class="line">           parent.setLeft(left);</span><br><span class="line">           parent.setRight(right);</span><br><span class="line"><span class="comment">//          移除这个两个节点</span></span><br><span class="line">           list.remove(left);</span><br><span class="line">           list.remove(right);</span><br><span class="line">       &#125;</span><br><span class="line"><span class="comment">//       此时list中只有一个值就是根节点，返回根节点即可</span></span><br><span class="line">        <span class="keyword">return</span> list.get(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/12/赫夫曼树/">展开全文 >></a>
         </p>
       
 
