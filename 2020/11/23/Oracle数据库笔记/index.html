@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/dept.png">
 <meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/emp.png">
 <meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/salgrand.png">
-<meta property="og:updated_time" content="2020-11-23T15:45:23.786Z">
+<meta property="og:updated_time" content="2020-11-23T16:02:51.509Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle数据库笔记">
 <meta name="twitter:description" content="–创建表空间create tablespace deal–表空间的位置datafile ‘d:\deal.dbf’–表空间初始大小size 100m–允许自动扩容autoextend on–每次扩容的大小next 10m;–删除表空间drop tablespace deal;–创建用户create user dealidentified by dealdefault tablespace deal">
@@ -187,6 +187,7 @@
 <p>delete from person where pname not in(‘小黑’);</p>
 <p>commit;</p>
 <p><strong>–序列：默认从1开始依次递增，主要用来给主键赋值使用</strong><br><strong>—序列布阵的属于某一张表，但是可以逻辑和表做绑定</strong><br>create sequence s_person;<br><strong>—-dual是虚表 为了补全语法 因为oracle查询必须用到from关键字</strong><br>select s_person.nextval from dual;<br>insert into person (pid,pname) values(s_person.nextval,’小王’);</p>
+<a id="more"></a>
 <h3 id="——scott用户里的表结构可以满足初始练习——"><a href="#——scott用户里的表结构可以满足初始练习——" class="headerlink" title="——scott用户里的表结构可以满足初始练习——"></a>——scott用户里的表结构可以满足初始练习——</h3><p><strong>DEPT表</strong></p>
 <p><img src="/2020/11/23/Oracle数据库笔记/dept.png" alt></p>
 <p><strong>EMP表</strong></p>
