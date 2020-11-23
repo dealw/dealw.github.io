@@ -19,8 +19,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/dept.png">
 <meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/emp.png">
-<meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/salgrand.png">
-<meta property="og:updated_time" content="2020-11-23T16:02:51.509Z">
+<meta property="og:image" content="http://yoursite.com/2020/11/23/Oracle数据库笔记/salgrade.png">
+<meta property="og:updated_time" content="2020-11-23T16:07:07.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle数据库笔记">
 <meta name="twitter:description" content="–创建表空间create tablespace deal–表空间的位置datafile ‘d:\deal.dbf’–表空间初始大小size 100m–允许自动扩容autoextend on–每次扩容的大小next 10m;–删除表空间drop tablespace deal;–创建用户create user dealidentified by dealdefault tablespace deal">
@@ -193,7 +193,7 @@
 <p><strong>EMP表</strong></p>
 <p><img src="/2020/11/23/Oracle数据库笔记/emp.png" alt></p>
 <p><strong>SALGRAND表</strong></p>
-<p><img src="/2020/11/23/Oracle数据库笔记/salgrand.png" alt></p>
+<p><img src="/2020/11/23/Oracle数据库笔记/salgrade.png" alt></p>
 <p><strong>–scott用户，密码tiger</strong></p>
 <p><strong>—解锁scott用户</strong><br>alter user scott account unlock;<br><strong>—解锁密码 (此句也可以来重置密码)</strong><br>alter user scott identified by tiger;</p>
 <h4 id="–单行函数：作用于一行，返回一个值"><a href="#–单行函数：作用于一行，返回一个值" class="headerlink" title="–单行函数：作用于一行，返回一个值"></a>–单行函数：作用于一行，返回一个值</h4><p><strong>—字符函数</strong><br>select upper(‘yes’)from dual;<br>select lower(‘YES’)from dual;<br><strong>—数值函数</strong><br>select round(26.14,1) from dual;—-四舍五入 后面的参数表示保留的位置<br>select trunc(56.16,-1)from dual;—-直接截取，不再看后面的数字<br>select mod(10,3) from dual;—-求余数<br><strong>—日期函数</strong><br><strong>—-查询出emp表中所有员工入职距离现在几天</strong><br>select sysdate-e.hiredate from emp e;<br><strong>—-明天此刻</strong><br>select sysdate+1 from dual;<br><strong>—-算出emp表中所有员工入职日期距现在几个月</strong><br>select months_between(sysdate,e.hiredate) from emp e;<br><strong>—-算出emp表中所有员工入职日期距现在几年</strong><br>select months_between(sysdate,e.hiredate)/12 from emp e;<br><strong>—-算出emp表中所有员工入职日期距现在几周</strong><br>select round((sysdate-e.hiredate)/7) from emp e;<br><strong>—-转换函数 日期转字符串</strong><br>select to_char(sysdate,’fm yyyy-mm-dd hh24:mi:ss’) from dual;<br><strong>—-字符串转日期</strong><br>select to_date(‘2020-11-23 16:4:18’,’fm yyyy-mm-dd hh24:mi:ss’) from dual;<br><strong>—通用函数</strong><br><strong>—-算出emp表中所有员工的年薪+奖金</strong><br>select e.sal*12+nvl(e.comm,0) from emp e;</p>
