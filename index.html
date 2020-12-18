@@ -158,6 +158,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-树的三种非递归遍历写法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/18/树的三种非递归遍历写法/">树的三种非递归遍历写法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/18/树的三种非递归遍历写法/" class="archive-article-date">
+  	<time datetime="2020-12-18T10:02:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>前序遍历</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preNoRecurr</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span>!=head)&#123;</span><br><span class="line">        Stack&lt;Node&gt; stack=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack.push(head);</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())&#123;</span><br><span class="line">            head=stack.pop();</span><br><span class="line">            System.out.print(head.val+<span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span>!=head.right)&#123;</span><br><span class="line">                stack.push(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span>!=head.left)&#123;</span><br><span class="line">                stack.push(head.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>中序遍历</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">midNoRecurr</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span>!=head)&#123;</span><br><span class="line">        Stack&lt;Node&gt; stack=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()||head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack.push(head);</span><br><span class="line">                head=head.left;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                head=stack.pop();</span><br><span class="line">                System.out.print(head.val+<span class="string">" "</span>);</span><br><span class="line">                head=head.right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>后序遍历</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">afterNoRecurr</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        Stack&lt;Node&gt; stack_1=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        Stack&lt;Node&gt; stack_2=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack_1.push(head);</span><br><span class="line">        <span class="keyword">while</span> (!stack_1.isEmpty())&#123;</span><br><span class="line">           head = stack_1.pop();</span><br><span class="line">            stack_2.push(head);</span><br><span class="line">            <span class="keyword">if</span> (head.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack_1.push(head.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (head.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack_1.push(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stack_2.isEmpty())&#123;</span><br><span class="line">            System.out.print(stack_2.pop().val+<span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/18/树的三种非递归遍历写法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Oracle数据库笔记" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -823,82 +901,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/10/03/闭锁CountDownLatch/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-关于CAS算法问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/29/关于CAS算法问题/">关于CAS算法问题</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/29/关于CAS算法问题/" class="archive-article-date">
-  	<time datetime="2020-09-28T16:10:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="关于CAS算法问题"><a href="#关于CAS算法问题" class="headerlink" title="关于CAS算法问题"></a>关于CAS算法问题</h1><p>  CAS算法配合volatile可以用来实现无锁并发<br>  <img src="/2020/09/29/关于CAS算法问题/CAS.png" alt><br>​</p>
-        
-          <a class="article-more-a" href="/2020/09/29/关于CAS算法问题/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/29/关于CAS算法问题/">展开全文 >></a>
         </p>
       
 

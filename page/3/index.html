@@ -158,6 +158,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-赫夫曼编码及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/14/赫夫曼编码及实现/">赫夫曼编码及实现</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/14/赫夫曼编码及实现/" class="archive-article-date">
+  	<time datetime="2019-11-13T17:30:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>赫夫曼编码的作用是压缩文件，主要原理是统计文件中不同字符出现的次数，将次数作为权值构建赫夫曼树，次数最少的在赫夫曼树的底层，每次遍历到各个节点时会通过许多条边，规定左子树的边<br>为’0’右子树的边为’1’，这样每次遍历到某个叶子节点通过的边按顺序组成了赫夫曼编码。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestHuffmanCode</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String arr=<span class="string">"can you as can a canner can a car."</span>;</span><br><span class="line">        <span class="keyword">byte</span>[] bytes=arr.getBytes();</span><br><span class="line"><span class="comment">//        进行赫夫曼压缩 用节点构建赫夫曼树</span></span><br><span class="line">        List&lt;HuffmanTreeNode&gt; huffmantreenode = huffmanzip(bytes);</span><br><span class="line">        huffmantreenode.get(<span class="number">0</span>).midshow();</span><br><span class="line">        System.out.println();</span><br><span class="line">        huffmantreenode.get(<span class="number">0</span>).fontshow();</span><br><span class="line">        System.out.println();</span><br><span class="line">        List&lt;HuffmanTreeNode&gt; getcode = huffmantreenode.get(<span class="number">0</span>).getcode();</span><br><span class="line">        <span class="keyword">for</span>(HuffmanTreeNode hfn:getcode)&#123;</span><br><span class="line">            System.out.print(hfn.data+<span class="string">":"</span>+hfn.codes+<span class="string">"    "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2019/11/14/赫夫曼编码及实现/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/14/赫夫曼编码及实现/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-赫夫曼树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -809,82 +885,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/10/28/插入排序/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-快速排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/26/快速排序/">快速排序</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/26/快速排序/" class="archive-article-date">
-  	<time datetime="2019-10-26T08:31:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>快速排序是程序开始时选择数组首位的一个数字作为基准，设置两个下标，一个从所排序数组的首位开始为从头标，一个是从排序数组的末位开始为未标，头标尾标交替判断是否大于<br>或者小于基准，最终将大于基准的数字排到数组后面把小于基准的数字排到数组前面，再进行递归对大于基准的那个数组和小于基准的那个数组分别排序，最终可以得到一个顺序数组。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">5</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">8</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">12</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        quicksort(arr, <span class="number">0</span>, arr.length - <span class="number">1</span>);</span><br><span class="line">        System.out.println(Arrays.toString(arr));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span>[] arr, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line"><span class="comment">//        这里的if是递归结束的标志，当开始标志大于结束标志时就代表递归的数组只有一个数字了</span></span><br><span class="line">        <span class="keyword">if</span> (end &gt; start) &#123;</span><br><span class="line"><span class="comment">//            设置比较基准</span></span><br><span class="line">            <span class="keyword">int</span> stard = arr[start];</span><br><span class="line"><span class="comment">//            设置开始标志</span></span><br><span class="line">            <span class="keyword">int</span> low = start;</span><br><span class="line"><span class="comment">//            设置结束标志</span></span><br><span class="line">            <span class="keyword">int</span> heigh = end;</span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2019/10/26/快速排序/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/26/快速排序/">展开全文 >></a>
         </p>
       
 

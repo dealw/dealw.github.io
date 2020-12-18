@@ -7,18 +7,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Deal&#39;s Blog</title>
+  <title>树的三种非递归遍历写法 | Deal&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="学习Java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Deal&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+  <meta name="description" content="前序遍历 12345678910111213141516public static void preNoRecurr(Node head)&amp;#123;    if (null!=head)&amp;#123;        Stack&amp;lt;Node&amp;gt; stack=new Stack&amp;lt;&amp;gt;();        stack.push(head);        while (!stack.i">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树的三种非递归遍历写法">
+<meta property="og:url" content="http://yoursite.com/2020/12/18/树的三种非递归遍历写法/index.html">
 <meta property="og:site_name" content="Deal&#39;s Blog">
-<meta property="og:description" content="学习Java">
+<meta property="og:description" content="前序遍历 12345678910111213141516public static void preNoRecurr(Node head)&amp;#123;    if (null!=head)&amp;#123;        Stack&amp;lt;Node&amp;gt; stack=new Stack&amp;lt;&amp;gt;();        stack.push(head);        while (!stack.i">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-12-18T10:03:51.957Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deal&#39;s Blog">
-<meta name="twitter:description" content="学习Java">
+<meta name="twitter:title" content="树的三种非递归遍历写法">
+<meta name="twitter:description" content="前序遍历 12345678910111213141516public static void preNoRecurr(Node head)&amp;#123;    if (null!=head)&amp;#123;        Stack&amp;lt;Node&amp;gt; stack=new Stack&amp;lt;&amp;gt;();        stack.push(head);        while (!stack.i">
   
     <link rel="alternative" href="/atom.xml" title="Deal&#39;s Blog" type="application/atom+xml">
   
@@ -156,33 +158,65 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-集合自定义二分法查找" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-树的三种非递归遍历写法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/28/集合自定义二分法查找/">集合自定义二分法查找</a>
+    <h1 class="article-title" itemprop="name">
+      树的三种非递归遍历写法
     </h1>
   
 
         
-        <a href="/2018/02/28/集合自定义二分法查找/" class="archive-article-date">
-  	<time datetime="2018-02-28T10:32:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
+        <a href="/2020/12/18/树的三种非递归遍历写法/" class="archive-article-date">
+  	<time datetime="2020-12-18T10:02:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Patizi</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;String&gt; hs = <span class="keyword">new</span> ArrayList&lt;&gt;();<span class="comment">// 按照长度排序</span></span><br><span class="line">		hs.add(<span class="string">"a"</span>);</span><br><span class="line">		hs.add(<span class="string">"aa"</span>);</span><br><span class="line">		hs.add(<span class="string">"abc"</span>);</span><br><span class="line">		hs.add(<span class="string">"bb"</span>);</span><br><span class="line">		hs.add(<span class="string">"cccc"</span>);</span><br><span class="line">		hs.add(<span class="string">"kk"</span>);</span><br><span class="line">		hs.add(<span class="string">"qqqq"</span>);</span><br><span class="line">		System.out.println(hs);<span class="comment">// 打印默认排序方法排序的结果--并不是按照长度排序的</span></span><br><span class="line">		System.out.println(Collections.binarySearch(hs, <span class="string">"bb"</span>));</span><br><span class="line">		Collections.sort(hs, <span class="keyword">new</span> mycompare());</span><br><span class="line">		System.out.println(hs);</span><br><span class="line">		System.out.println(Collections.binarySearch(hs, <span class="string">"bb"</span>, <span class="keyword">new</span> mycompare()));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">mycompare</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (s1.length() &gt; s2.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (s1.length() &lt; s2.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s1.compareTo(s2);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="运行结果↓↓↓"><a href="#运行结果↓↓↓" class="headerlink" title="运行结果↓↓↓"></a>运行结果↓↓↓</h2><p><img src="/2018/02/28/集合自定义二分法查找/二分法.png" alt="二分法"></p>
-
+        <p><strong>前序遍历</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preNoRecurr</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span>!=head)&#123;</span><br><span class="line">        Stack&lt;Node&gt; stack=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack.push(head);</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty())&#123;</span><br><span class="line">            head=stack.pop();</span><br><span class="line">            System.out.print(head.val+<span class="string">" "</span>);</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span>!=head.right)&#123;</span><br><span class="line">                stack.push(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">null</span>!=head.left)&#123;</span><br><span class="line">                stack.push(head.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>中序遍历</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">midNoRecurr</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">null</span>!=head)&#123;</span><br><span class="line">        Stack&lt;Node&gt; stack=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()||head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack.push(head);</span><br><span class="line">                head=head.left;</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                head=stack.pop();</span><br><span class="line">                System.out.print(head.val+<span class="string">" "</span>);</span><br><span class="line">                head=head.right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>后序遍历</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">afterNoRecurr</span><span class="params">(Node head)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        Stack&lt;Node&gt; stack_1=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        Stack&lt;Node&gt; stack_2=<span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stack_1.push(head);</span><br><span class="line">        <span class="keyword">while</span> (!stack_1.isEmpty())&#123;</span><br><span class="line">           head = stack_1.pop();</span><br><span class="line">            stack_2.push(head);</span><br><span class="line">            <span class="keyword">if</span> (head.left!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack_1.push(head.left);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (head.right!=<span class="keyword">null</span>)&#123;</span><br><span class="line">                stack_1.push(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (!stack_2.isEmpty())&#123;</span><br><span class="line">            System.out.print(stack_2.pop().val+<span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -193,7 +227,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -202,16 +236,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/28/集合自定义二分法查找/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/12/18/树的三种非递归遍历写法/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/11/23/Oracle数据库笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Oracle数据库笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -231,682 +324,14 @@
 
 
 
-
-  
-    <article id="post-List原始及自定义排序方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/27/List原始及自定义排序方法/">List原始及自定义排序方法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/27/List原始及自定义排序方法/" class="archive-article-date">
-  	<time datetime="2018-02-27T13:15:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Collections;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListDemo</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(obj);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;String&gt; lis = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		lis.add(<span class="string">"aa"</span>);</span><br><span class="line">		lis.add(<span class="string">"b"</span>);</span><br><span class="line">		lis.add(<span class="string">"bbb"</span>);</span><br><span class="line">		lis.add(<span class="string">"zzz"</span>);</span><br><span class="line">		lis.add(<span class="string">"aaa"</span>);</span><br><span class="line">		lis.add(<span class="string">"bb"</span>);</span><br><span class="line">		lis.add(<span class="string">"a"</span>);</span><br><span class="line">		sop(lis);</span><br><span class="line">		Collections.sort(lis<span class="comment">/* ,new Comlen() */</span>);<span class="comment">//将定义的方法加入其中</span></span><br><span class="line">		sop(lis);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Comlen</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">String</span>&gt; </span>&#123;  <span class="comment">//自定义长度比较方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (s1.length() &gt; s2.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (s1.length() &lt; s2.length()) &#123;</span><br><span class="line">			<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> s1.compareTo(s2);   <span class="comment">//长度相同时按照字符比较</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/27/List原始及自定义排序方法/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-HashMap的keySet和entrySet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/26/HashMap的keySet和entrySet/">HashMap的keySet和entrySet</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/26/HashMap的keySet和entrySet/" class="archive-article-date">
-  	<time datetime="2018-02-26T14:46:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="entrySet"><a href="#entrySet" class="headerlink" title="entrySet"></a>entrySet</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Map&lt;Student, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"zhangsan"</span>, <span class="number">20</span>), <span class="string">"Beijing"</span>);</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"lisi"</span>, <span class="number">21</span>), <span class="string">"shanghai"</span>);</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"wangwu"</span>, <span class="number">22</span>), <span class="string">"shaanxi"</span>);</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"wangwu"</span>, <span class="number">22</span>), <span class="string">"tianjin"</span>);</span><br><span class="line">		Set&lt;Map.Entry&lt;Student, String&gt;&gt; entryset = map.entrySet();</span><br><span class="line">		Iterator&lt;Map.Entry&lt;Student, String&gt;&gt; it = entryset.iterator();</span><br><span class="line">		<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">			Map.Entry&lt;Student, String&gt; p = it.next();</span><br><span class="line">			System.out.println(p.getKey().getInfor() + <span class="string">"---"</span> + p.getValue());</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">	Student(String name, <span class="keyword">int</span> age) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name.hashCode() * <span class="number">39</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!(obj <span class="keyword">instanceof</span> Student)) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> ClassCastException(<span class="string">"數據異常"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		Student ob = (Student) obj;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name.equals(ob.name) &amp;&amp; <span class="keyword">this</span>.age == ob.age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getInfor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name + <span class="string">"--"</span> + age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="keyset"><a href="#keyset" class="headerlink" title="keyset"></a>keyset</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test11;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MapTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Map&lt;Student, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"zhangsan"</span>, <span class="number">20</span>), <span class="string">"Beijing"</span>);</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"lisi"</span>, <span class="number">21</span>), <span class="string">"shanghai"</span>);</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"wangwu"</span>, <span class="number">22</span>), <span class="string">"shaanxi"</span>);</span><br><span class="line">		map.put(<span class="keyword">new</span> Student(<span class="string">"wangwu"</span>, <span class="number">22</span>), <span class="string">"tianjin"</span>);</span><br><span class="line">		Set&lt;Student&gt; keyset = map.keySet();</span><br><span class="line">		Iterator&lt;Student&gt; it = keyset.iterator();</span><br><span class="line">		<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">			Student p = it.next();</span><br><span class="line">			System.out.println(map.get(p));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">	Student(String name, <span class="keyword">int</span> age) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getInfor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name + <span class="string">"--"</span> + age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/26/HashMap的keySet和entrySet/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-日历并标出当前日期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/25/日历并标出当前日期/">日历并标出当前日期</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/25/日历并标出当前日期/" class="archive-article-date">
-  	<time datetime="2018-02-25T14:34:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.time.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calender</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		LocalDate date = LocalDate.now();</span><br><span class="line">		<span class="keyword">int</span> month = date.getMonthValue();</span><br><span class="line">		<span class="keyword">int</span> today = date.getDayOfMonth();</span><br><span class="line">		date = date.minusDays(today - <span class="number">1</span>);</span><br><span class="line">		DayOfWeek weekday = date.getDayOfWeek();</span><br><span class="line">		<span class="keyword">int</span> value = weekday.getValue();</span><br><span class="line">		System.out.println(<span class="string">" Mon Tue Wed Thu Fir Sat Sun"</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; value; i++)</span><br><span class="line">			System.out.print(<span class="string">"    "</span>);</span><br><span class="line">		<span class="keyword">while</span> (date.getMonthValue() == month) &#123;</span><br><span class="line">			System.out.printf(<span class="string">"%3d"</span>, date.getDayOfMonth());</span><br><span class="line">			<span class="keyword">if</span> (date.getDayOfMonth() == today)</span><br><span class="line">				System.out.printf(<span class="string">"*"</span>);</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				System.out.printf(<span class="string">" "</span>);</span><br><span class="line">			date = date.plusDays(<span class="number">1</span>);</span><br><span class="line">			<span class="keyword">if</span> (date.getDayOfWeek().getValue() == <span class="number">1</span>)</span><br><span class="line">				System.out.println();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h2><p><img src="/2018/02/25/日历并标出当前日期/日历.png" alt="日历"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/25/日历并标出当前日期/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-TreeSet自定义compare。。。" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/24/TreeSet自定义compare。。。/">TreeSet自定义compare。。。</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/24/TreeSet自定义compare。。。/" class="archive-article-date">
-  	<time datetime="2018-02-24T11:58:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="TreeSet类草稿-01"><a href="#TreeSet类草稿-01" class="headerlink" title="TreeSet类草稿:01"></a>TreeSet类草稿:01</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.TreeSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test10</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(obj);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		TreeSet&lt;Person&gt; ts= <span class="keyword">new</span> TreeSet&lt;&gt;(<span class="keyword">new</span> Mycompare());    <span class="comment">//调用自己写的比较器</span></span><br><span class="line">		ts.add(<span class="keyword">new</span> Person(<span class="string">"lisi07"</span>, <span class="number">20</span>));</span><br><span class="line">		ts.add(<span class="keyword">new</span> Person(<span class="string">"lisi02"</span>, <span class="number">29</span>));</span><br><span class="line">		ts.add(<span class="keyword">new</span> Person(<span class="string">"lisi09"</span>, <span class="number">19</span>));</span><br><span class="line">		ts.add(<span class="keyword">new</span> Person(<span class="string">"lisi08"</span>, <span class="number">20</span>));</span><br><span class="line">        Iterator it=ts.iterator();</span><br><span class="line">        <span class="keyword">while</span>(it.hasNext()) &#123;</span><br><span class="line">        	Person p=(Person) it.next();</span><br><span class="line">        	sop(p.getName()+<span class="string">"....."</span>+p.getAge());</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/02/24/TreeSet自定义compare。。。/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">草稿</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/24/TreeSet自定义compare。。。/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-List增删改查" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/24/List增删改查/">List增删改查</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/24/List增删改查/" class="archive-article-date">
-  	<time datetime="2018-02-24T05:57:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> test9;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test9</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sop</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">		System.out.println(obj);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;Person&gt; al = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		al.add(<span class="keyword">new</span> Person(<span class="string">"zhangsan"</span>, <span class="number">20</span>));</span><br><span class="line">		al.add(<span class="keyword">new</span> Person(<span class="string">"lisi"</span>, <span class="number">25</span>));</span><br><span class="line">		al.add(<span class="keyword">new</span> Person(<span class="string">"wangwu"</span>, <span class="number">30</span>));</span><br><span class="line">		al.add(<span class="keyword">new</span> Person(<span class="string">"wangwu"</span>, <span class="number">30</span>));</span><br><span class="line">		al.add(<span class="keyword">new</span> Person(<span class="string">"zhangsan"</span>, <span class="number">35</span>));</span><br><span class="line">		Iterator a1 = al.iterator();</span><br><span class="line">		<span class="keyword">while</span> (a1.hasNext()) &#123;</span><br><span class="line">			Person p = (Person) a1.next();</span><br><span class="line">			sop(p.getName() + <span class="string">"...."</span> + p.getAge());</span><br><span class="line">		&#125;</span><br><span class="line">		sop(<span class="string">"-----------------------------------"</span>);</span><br><span class="line">		<span class="comment">// delete(al);</span></span><br><span class="line">		Iterator a2 = delete(al).iterator();</span><br><span class="line">		<span class="keyword">while</span> (a2.hasNext()) &#123;</span><br><span class="line">			Person p = (Person) a2.next();</span><br><span class="line">			sop(p.getName() + <span class="string">"...."</span> + p.getAge());  <span class="comment">//想要调用方法必须转型</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ArrayList <span class="title">delete</span><span class="params">(ArrayList al)</span> </span>&#123;</span><br><span class="line">		ArrayList na = <span class="keyword">new</span> ArrayList();</span><br><span class="line">		Iterator it = al.iterator();</span><br><span class="line">		<span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">			Object obj = it.next();</span><br><span class="line">			<span class="keyword">if</span> (!na.contains(obj)) &#123;</span><br><span class="line">				na.add(obj);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> na;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;   <span class="comment">//这里要覆写Object的equals方法 因为在Test9类delete方法的迭代器中contain方法还是会调用equals方法</span></span><br><span class="line">		<span class="keyword">if</span> (!(obj <span class="keyword">instanceof</span> Person)) &#123;   <span class="comment">//覆写equals方法后就会根据我们想要的比较方法比较。</span></span><br><span class="line">			<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		Person p = (Person) obj;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.name.equals(p.getName()) &amp;&amp; <span class="keyword">this</span>.age == p.age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	Person(String name, <span class="keyword">int</span> age) &#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="List中存对象如果该对象所属类有构造方法和私有域记得在迭代器中向下转型"><a href="#List中存对象如果该对象所属类有构造方法和私有域记得在迭代器中向下转型" class="headerlink" title="List中存对象如果该对象所属类有构造方法和私有域记得在迭代器中向下转型"></a>List中存对象如果该对象所属类有构造方法和私有域记得在迭代器中向下转型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator a=a1.iterator;</span><br><span class="line"> <span class="keyword">while</span>(a.hasNext())&#123;</span><br><span class="line">  Object obj=a.next();				<span class="comment">//也可以直接写成 Person p=(Person) a.next();</span></span><br><span class="line">  Person p=(Person) obj;			<span class="comment">//假设你要转成Person型</span></span><br><span class="line">  System.out.println(p.getName()+<span class="string">"...."</span>+p.getAge);</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/24/List增删改查/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-集合框架概述及数组链表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/20/集合框架概述及数组链表/">集合框架概述及数组链表</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/20/集合框架概述及数组链表/" class="archive-article-date">
-  	<time datetime="2018-02-20T13:17:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/2018/02/20/集合框架概述及数组链表/集合框架.png" alt="集合框架"></p>
-<h2 id="还有一张图⬇⬇⬇"><a href="#还有一张图⬇⬇⬇" class="headerlink" title="还有一张图⬇⬇⬇"></a>还有一张图⬇⬇⬇</h2>
-        
-          <a class="article-more-a" href="/2018/02/20/集合框架概述及数组链表/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/20/集合框架概述及数组链表/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-StringBuffer练习题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/18/StringBuffer练习题/">StringBuffer练习题</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/18/StringBuffer练习题/" class="archive-article-date">
-  	<time datetime="2018-02-18T13:57:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="输入一串有顺序的数字-再输入一个数字把他按照原来的顺序加入其中"><a href="#输入一串有顺序的数字-再输入一个数字把他按照原来的顺序加入其中" class="headerlink" title="输入一串有顺序的数字 再输入一个数字把他按照原来的顺序加入其中"></a>输入一串有顺序的数字 再输入一个数字把他按照原来的顺序加入其中</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test6</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner s = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"input a number list:"</span>);</span><br><span class="line">		String input = s.nextLine();</span><br><span class="line">		System.out.println(<span class="string">"please input the number you want to add:"</span>);</span><br><span class="line">		<span class="keyword">int</span> num = s.nextInt();</span><br><span class="line">		s.close();</span><br><span class="line">		StringBuffer ch = <span class="keyword">new</span> StringBuffer(input);</span><br><span class="line">		<span class="keyword">int</span> len = ch.length();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (num &lt;= Integer.valueOf(String.valueOf(ch.charAt(i)))) &#123;</span><br><span class="line">				ch.insert(i, num);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (ch.length() == len) &#123;</span><br><span class="line">			ch.append(num);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.print(<span class="string">"["</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ch.length(); i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (i == ch.length() - <span class="number">1</span>) &#123;</span><br><span class="line">				System.out.print(ch.charAt(i) + <span class="string">"]"</span>);</span><br><span class="line">				<span class="keyword">return</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			System.out.print(ch.charAt(i) + <span class="string">","</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>说一下遇到的问题：第一次写完的时候不论输入什么结果都是把我输入的那个数字加到一串数字最前面<br>                    后来分析原因是再进行第一个判断的时候都是true了所以把数字都加到0位置上了<br>                    为什么会这样？因为他比较的是数字所代表的ASCII码这就说得通都是true了<br>                    怎么解决？我们把StringBuffer里想要判断的元素也变成int型就可以进行数字之间的对比了<br>                    先将你指定的元素ch.charAt(i)变成String型-&gt;String.valueOf(ch.charAt(i))<br>                    再将它变成int型-&gt;Integer.valueOf(String.valueOf(ch.charAt(i)))<br>                    然后就可以直接和数字比大小了而不是通过ASCII比。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/18/StringBuffer练习题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-练习题-持续更新中" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/18/练习题-持续更新中/">练习题--持续更新中</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/18/练习题-持续更新中/" class="archive-article-date">
-  	<time datetime="2018-02-17T17:48:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="计算输入的数的所有因数并输出"><a href="#计算输入的数的所有因数并输出" class="headerlink" title="计算输入的数的所有因数并输出"></a>计算输入的数的所有因数并输出</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test1</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		Scanner s=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"请输入一个整数:"</span>);</span><br><span class="line">		<span class="keyword">int</span> n=s.nextInt();</span><br><span class="line">		System.out.print(n+<span class="string">"="</span>);</span><br><span class="line">		<span class="keyword">int</span> k=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">while</span>(k&lt;=n) &#123;</span><br><span class="line">			<span class="keyword">if</span>(n%k==<span class="number">0</span>) &#123;</span><br><span class="line">				<span class="keyword">if</span>(n==k) &#123;</span><br><span class="line">					System.out.print(k);</span><br><span class="line">					<span class="keyword">return</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				System.out.print(k+<span class="string">"*"</span>);</span><br><span class="line">				n=n/k;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> k++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="计算水仙花数并输出"><a href="#计算水仙花数并输出" class="headerlink" title="计算水仙花数并输出"></a>计算水仙花数并输出</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">100</span>;i&lt;<span class="number">1000</span>;i++) &#123;</span><br><span class="line">			<span class="keyword">int</span> a=i/<span class="number">100</span>;</span><br><span class="line">			<span class="keyword">int</span> b=i/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">			<span class="keyword">int</span> c=i%<span class="number">10</span>;</span><br><span class="line">			<span class="keyword">if</span>(i==Math.pow(a,<span class="number">3</span>)+Math.pow(b, <span class="number">3</span>)+Math.pow(c, <span class="number">3</span>)) &#123;</span><br><span class="line">				System.out.println(i+<span class="string">"是水仙花数"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/02/18/练习题-持续更新中/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/18/练习题-持续更新中/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ArrayList泛型数组自定义元素及排序输出" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/16/ArrayList泛型数组自定义元素及排序输出/">ArrayList泛型数组自定义元素及排序输出</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/16/ArrayList泛型数组自定义元素及排序输出/" class="archive-article-date">
-  	<time datetime="2018-02-16T12:44:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>打印结果根据输入数值改变<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayTest</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		ArrayList&lt;Integer&gt; test = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		Scanner s = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">		System.out.println(<span class="string">"Please input a limt integer that is you want(greater than 10 would be better):"</span>);</span><br><span class="line">		<span class="keyword">int</span> input = s.nextInt();</span><br><span class="line">		s.close();</span><br><span class="line">		<span class="keyword">int</span> limt = input;</span><br><span class="line">		<span class="comment">// 给test数组中增加元素</span></span><br><span class="line">		<span class="keyword">int</span> k = (<span class="keyword">int</span>) (Math.random() * limt);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; k + <span class="number">10</span>; i++) &#123; <span class="comment">// 这句如果写在for循环括号里那么只能执行一次int b=(int)(Math.random()*i);。也就是说b的值不会变</span></span><br><span class="line">			<span class="keyword">int</span> b = (<span class="keyword">int</span>) (Math.random() * i);</span><br><span class="line">			test.add(b);</span><br><span class="line">		&#125;</span><br><span class="line">		sort(test);</span><br><span class="line">		System.out.println(test);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(ArrayList&lt;Integer&gt; c)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> temp;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; c.size() - <span class="number">1</span>; i++) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; c.size() - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">				<span class="keyword">if</span> (c.get(j) &gt; c.get(j + <span class="number">1</span>)) &#123;</span><br><span class="line">					temp = c.get(j);</span><br><span class="line">					c.set(j, c.get(j + <span class="number">1</span>));</span><br><span class="line">					c.set(j + <span class="number">1</span>, temp);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<blockquote>
-<p>当然 把ArrayList转成数组再排序然后用for each输出也是可以的</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/16/ArrayList泛型数组自定义元素及排序输出/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -929,8 +354,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
